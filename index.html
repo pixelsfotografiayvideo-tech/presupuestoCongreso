@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presupuesto · Evento Científico · Grupo Uno</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --dark2:   #1a1a1a;
+      --white:   #ffffff;
+      --cream:   #f5f0e8;
+      --gold:    #c9a96e;
+      --gold-lt: #e2c9a0;
+      --gray:    #888888;
+      --rust:    #b07040;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Montserrat', sans-serif;
+      --max-w: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+
+    .eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .header-brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+    }
+    .header-brand span { color: var(--gold); }
+    .header-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: right;
+    }
+
+    /* ── HERO BAND ── */
+    #hero {
+      background: var(--black);
+      padding: 80px 32px 72px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .hero-inner { max-width: var(--max-w); margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(201,169,110,0.3);
+      padding: 7px 18px;
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.93;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--cream);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-lt);
+      text-transform: none;
+      font-size: 0.85em;
+      letter-spacing: 0;
+    }
+    .hero-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      max-width: 520px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+
+    /* evento info chips */
+    .evento-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+    .chip strong {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+
+    /* ── CRONOGRAMA ── */
+    #cronograma {
+      padding: 80px 32px;
+      background: var(--dark2);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .crono-inner { max-width: var(--max-w); margin: 0 auto; }
+    .crono-header { margin-bottom: 52px; }
+    .crono-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .crono-header h2 em { font-style: italic; color: var(--gold-lt); }
+    .crono-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    @media (max-width: 640px) {
+      .crono-grid { grid-template-columns: 1fr; }
+    }
+    .crono-day {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 32px;
+    }
+    .crono-day-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .crono-day-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .crono-day-hours {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .crono-list { list-style: none; }
+    .crono-list li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .crono-list li::before { content: '—'; color: var(--gold); opacity: 0.5; flex-shrink: 0; }
+    .crono-total {
+      margin-top: 16px;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .crono-total strong { color: var(--gold-lt); }
+
+    /* ── QUÉ INCLUYE ── */
+    #cobertura {
+      padding: 80px 32px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cob-inner { max-width: var(--max-w); margin: 0 auto; }
+    .cob-header { margin-bottom: 52px; }
+    .cob-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+    }
+    .cob-header h2 em { font-style: italic; color: var(--gold-lt); }
+    .cob-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    @media (max-width: 768px) {
+      .cob-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .cob-grid { grid-template-columns: 1fr; }
+    }
+    .cob-item {
+      padding: 32px 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+    .cob-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      opacity: 0.7;
+    }
+    .cob-title {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .cob-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+    }
+
+    /* ── PLANES / OPCIONES ── */
+    #planes {
+      padding: 80px 32px;
+      background: var(--black);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .planes-inner { max-width: var(--max-w); margin: 0 auto; }
+    .planes-header { margin-bottom: 52px; }
+    .planes-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .planes-header h2 em { font-style: italic; color: var(--gold-lt); }
+    .planes-header p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 10px;
+      max-width: 400px;
+      line-height: 1.75;
+    }
+    .planes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    @media (max-width: 768px) {
+      .planes-grid { grid-template-columns: 1fr; gap: 10px; }
+    }
+    .plan-card {
+      padding: 40px 32px;
+      border: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .plan-card:hover { border-color: rgba(201,169,110,0.5); background: rgba(201,169,110,0.04); }
+    .plan-card.featured {
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.06);
+    }
+    .plan-badge {
+      position: absolute;
+      top: -1px; left: 32px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+    }
+    .plan-num {
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 14px;
+    }
+    .plan-title {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+      color: var(--cream);
+    }
+    .plan-ideal {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+    .plan-divider {
+      width: 32px; height: 1px;
+      background: rgba(201,169,110,0.35);
+      margin-bottom: 24px;
+    }
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-price-note {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .plan-items { list-style: none; margin-bottom: 32px; }
+    .plan-items li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .plan-items li::before { content: '—'; color: var(--gold); opacity: 0.55; flex-shrink: 0; }
+    .plan-items li.extra { color: rgba(255,255,255,0.35); font-style: italic; }
+    .plan-items li.extra::before { opacity: 0.25; }
+    .planes-footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ENTREGABLES ── */
+    #entregables {
+      padding: 80px 32px;
+      background: var(--dark2);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .ent-inner { max-width: var(--max-w); margin: 0 auto; }
+    .ent-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .ent-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .ent-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .ent-text h2 em { font-style: italic; color: var(--gold-lt); }
+    .ent-text p {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+    .ent-highlight {
+      margin-top: 28px;
+      padding: 24px 28px;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,169,110,0.05);
+    }
+    .ent-highlight p {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .ent-list-box {
+      padding: 36px 32px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+    }
+    .ent-list-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .ent-list { list-style: none; }
+    .ent-list li {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.55);
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .ent-list li:last-child { border-bottom: none; }
+    .ent-list li::before { content: '—'; color: var(--gold); opacity: 0.5; flex-shrink: 0; }
+
+    /* ── CTA CONTACTO ── */
+    #contacto {
+      padding: 100px 32px;
+      background: var(--black);
+      text-align: center;
+    }
+    .contacto-inner { max-width: 640px; margin: 0 auto; }
+    .contacto-big {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .contacto-big em {
+      font-style: italic;
+      text-transform: none;
+      color: var(--gold-lt);
+      font-size: 0.85em;
+      letter-spacing: 0;
+    }
+    .contacto-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.85;
+      margin-bottom: 44px;
+    }
+    .contacto-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.65);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+    .contacto-email {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      margin-top: 10px;
+    }
+    .contacto-email a { color: var(--gold); }
+
+    /* ── VALIDEZ ── */
+    #validez {
+      background: var(--dark2);
+      padding: 40px 32px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .validez-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .validez-txt {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+    }
+    .validez-txt strong { color: rgba(255,255,255,0.45); }
+    .validez-num {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 40px 32px 28px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.15);
+      text-transform: uppercase;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #000; }
+      header, #hero, #cronograma, #cobertura, #planes, #entregables, #contacto, #validez, footer {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .plan-card.featured { border-color: #c9a96e !important; }
+      @page { margin: 18mm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════ HEADER ══════ -->
+<header>
+  <div class="header-brand">Pixels <span>·</span> Fotografía y Video</div>
+  <div class="header-meta">
+    Presupuesto N.º 0342<br>
+    Córdoba · Mayo 2026
+  </div>
+</header>
+
+<!-- ══════ HERO ══════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Cotización para cobertura de evento</div>
+    <h1 class="hero-title">
+      Evento<br><em>Científico</em><br>Córdoba
+    </h1>
+    <p class="hero-desc">
+      Estimada Carina, te acercamos nuestra propuesta para la cobertura fotográfica completa del congreso científico organizado por Grupo Uno en el Hotel Quinto Centenario.
+    </p>
+    <div class="evento-chips">
+      <div class="chip"><strong>Cliente</strong>Grupo Uno · Caro</div>
+      <div class="chip"><strong>Lugar</strong>Hotel Quinto Centenario, Córdoba</div>
+      <div class="chip"><strong>Días de cobertura</strong>20 y 21 de agosto de 2026</div>
+      <div class="chip"><strong>Tipo de evento</strong>Congreso / Evento Científico</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CRONOGRAMA ══════ -->
+<section id="cronograma">
+  <div class="crono-inner">
+    <div class="crono-header">
+      <span class="eyebrow">Cobertura pautada</span>
+      <h2>Dos días,<br><em>cobertura completa.</em></h2>
+    </div>
+    <div class="crono-grid">
+      <div class="crono-day">
+        <div class="crono-day-num">20</div>
+        <div class="crono-day-date">Miércoles 20 de agosto</div>
+        <div class="crono-day-hours">8:00 — 19:30 h.</div>
+        <ul class="crono-list">
+          <li>Apertura del congreso</li>
+          <li>Sesiones plenarias y simposios</li>
+          <li>Talleres</li>
+          <li>Exposición comercial</li>
+          <li>Coffee break y momentos de pausa</li>
+        </ul>
+        <div class="crono-total">Total: <strong>11 hs. 30 min.</strong></div>
+      </div>
+      <div class="crono-day">
+        <div class="crono-day-num">21</div>
+        <div class="crono-day-date">Jueves 21 de agosto</div>
+        <div class="crono-day-hours">8:00 — 17:30 h.</div>
+        <ul class="crono-list">
+          <li>Sesiones y simposios</li>
+          <li>Talleres</li>
+          <li>Exposición comercial</li>
+          <li>Coffee break y momentos de pausa</li>
+          <li>Cierre del congreso</li>
+        </ul>
+        <div class="crono-total">Total: <strong>9 hs. 30 min.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ QUÉ CUBRIMOS ══════ -->
+<section id="cobertura">
+  <div class="cob-inner">
+    <div class="cob-header">
+      <span class="eyebrow">Alcance de la cobertura</span>
+      <h2>Cada momento<br><em>del congreso.</em></h2>
+    </div>
+    <div class="cob-grid">
+      <div class="cob-item">
+        <div class="cob-icon">🎤</div>
+        <div class="cob-title">Apertura e inauguración</div>
+        <div class="cob-desc">Registro de la bienvenida, autoridades, oradores y primeros momentos del congreso.</div>
+      </div>
+      <div class="cob-item">
+        <div class="cob-icon">🔬</div>
+        <div class="cob-title">Sesiones y simposios</div>
+        <div class="cob-desc">Cobertura de ponentes, paneles, presentaciones y audiencia. Fotos de relator, pantallas y ambiente.</div>
+      </div>
+      <div class="cob-item">
+        <div class="cob-icon">🛠️</div>
+        <div class="cob-title">Talleres</div>
+        <div class="cob-desc">Registro dinámico de actividades prácticas, interacción entre participantes e instructores.</div>
+      </div>
+      <div class="cob-item">
+        <div class="cob-icon">🏛️</div>
+        <div class="cob-title">Exposición comercial</div>
+        <div class="cob-desc">Cobertura de stands, productos, interacción de asistentes con expositores y ambientación general.</div>
+      </div>
+      <div class="cob-item">
+        <div class="cob-icon">☕</div>
+        <div class="cob-title">Breaks y momentos sociales</div>
+        <div class="cob-desc">Fotografía espontánea de networking, conversaciones, catering y momentos entre sesiones.</div>
+      </div>
+      <div class="cob-item">
+        <div class="cob-icon">📸</div>
+        <div class="cob-title">Ambiente general</div>
+        <div class="cob-desc">Registro del venue, salones, detalles de producción, señalética y ambientación del evento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PLANES ══════ -->
+<section id="planes">
+  <div class="planes-inner">
+    <div class="planes-header">
+      <span class="eyebrow">Opciones de cotización</span>
+      <h2>Opciones sobre el día<br><em>de tu congreso.</em></h2>
+      <p></p>
+    </div>
+    <div class="planes-grid" style="grid-template-columns: 1fr; max-width: 560px;">
+
+      <!-- INVERSIÓN ÚNICA -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Propuesta</div>
+        <div class="plan-num">Inversión</div>
+        <div class="plan-title">Cobertura completa</div>
+        <div class="plan-ideal">2 días · Hotel Quinto Centenario</div>
+        <div class="plan-divider"></div>
+        <div class="plan-price">$ 1.200.000</div>
+        <div class="plan-price-note">2 días completos · Seña: $200.000</div>
+        <ul class="plan-items">
+          <li>1 fotógrafo profesional · 2 días</li>
+          <li>Cobertura simultánea en múltiples salones</li>
+          <li>Sesiones, simposios y talleres en paralelo</li>
+          <li>Exposición comercial y breaks</li>
+          <li>800–1.000 fotos editadas</li>
+          <li>Entrega prioritaria: 3 días hábiles</li>
+          <li>Selección preliminar al siguiente día</li>
+          <li>Entrega en galería digital privada</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ GALERÍA ══════ -->
+<section id="galeria" style="background: var(--black); padding: 80px 0 0;">
+  <div class="wrap" style="margin-bottom: 40px;">
+    <span class="eyebrow">Nuestro trabajo</span>
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.1;">
+      Así cubrimos<br><em style="font-style:italic; color: var(--gold-lt);">cada evento.</em>
+    </h2>
+  </div>
+  <div style="
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 4px;
+  ">
+    <!-- foto grande izquierda -->
+    <div style="grid-column: span 2; grid-row: span 2; overflow: hidden; aspect-ratio: 1/1; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845244/Pixels_Fotografia_y_Video-152_vgfz62.jpg"
+           alt="Cobertura de evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease; display:block;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <!-- fila derecha arriba: 2 fotos -->
+    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845243/Pixels_Fotografia_y_Video-57_wepokp.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845241/Pixels_Fotografia_y_Video-213_s7xzm9.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <!-- fila derecha abajo: 2 fotos -->
+    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845240/Pixels_Fotografia_y_Video-32_ci9hzf.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845237/Pixels_Fotografia_y_Video-80_g3dnok.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <!-- fila final: 4 fotos -->
+    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845236/Pixels_Fotografia_y_Video-83_oidd8g.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845236/Pixels_Fotografia_y_Video-79_w0chd0.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+      <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845233/Pixels_Fotografia_y_Video-18_j17tuc.jpg"
+           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+    </div>
+    <!-- celda texto editorial -->
+    <div style="background: var(--dark2); aspect-ratio:4/3; display:flex; flex-direction:column; justify-content:flex-end; padding: 28px 24px;">
+      <div style="font-family: var(--font-display); font-size: 2.8rem; font-weight:300; color: var(--gold); opacity:0.4; line-height:1;">+8</div>
+      <div style="font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 6px;">Años cubriendo<br>eventos en Córdoba</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ENTREGABLES ══════ -->
+<section id="entregables">
+  <div class="ent-inner">
+    <div class="ent-grid">
+      <div class="ent-text">
+        <span class="eyebrow">Qué recibís</span>
+        <h2>Fotos que <em>cuentan</em><br>el evento.</h2>
+        <p>Cada imagen pasa por un proceso de edición profesional: corrección de color, exposición, contraste y retoque. No entregamos cantidad — entregamos calidad.</p>
+        <p>La galería final es privada, protegida con contraseña, y puede descargarse en alta resolución para uso institucional, redes y prensa.</p>
+        <div class="ent-highlight">
+          <p>"Documentar un congreso científico no es solo fotografiar ponentes. Es capturar la energía de quienes comparten conocimiento."</p>
+        </div>
+      </div>
+      <div class="ent-list-box">
+        <div class="ent-list-title">Lo que incluye cada plan</div>
+        <ul class="ent-list">
+          <li>Fotografías editadas en alta resolución (JPG)</li>
+          <li>Galería digital privada con descarga incluida</li>
+          <li>Licencia de uso institucional sin restricciones</li>
+          <li>Fotos aptas para redes, prensa y comunicación</li>
+          <li>Respaldo en nube por 90 días post-entrega</li>
+          <li>Coordinación previa con la organización</li>
+          <li>Comunicación directa el día del evento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA CONTACTO ══════ -->
+<section id="contacto">
+  <div class="contacto-inner">
+    <p class="eyebrow" style="text-align:center;">Siguiente paso</p>
+    <div class="contacto-big">
+      Hablemos<br><em>del evento.</em>
+    </div>
+    <p class="contacto-sub">
+      Cualquier duda sobre la propuesta, ajuste en los planes o información adicional que necesitás — estamos disponibles para coordinar una reunión o responderte por WhatsApp.
+    </p>
+    <div class="contacto-btns">
+      <a class="btn-gold" href="https://wa.me/543517364379?text=Hola%21+Soy+Carina+de+Grupo+Uno%2C+quiero+hablar+sobre+la+cotizaci%C3%B3n+del+evento+cient%C3%ADfico." target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultá por WhatsApp
+      </a>
+      <a class="btn-outline" href="mailto:carina.muringa@gueventos.com.ar?subject=Presupuesto%20Evento%20Cient%C3%ADfico%20-%20Grupo%20Uno&body=Hola%20Carina%2C%20te%20env%C3%ADo%20el%20presupuesto%20solicitado.">
+        Enviar por correo
+      </a>
+    </div>
+    <div class="contacto-email">
+      Correo del cliente: <a href="mailto:carina.muringa@gueventos.com.ar">carina.muringa@gueventos.com.ar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ VALIDEZ ══════ -->
+<section id="validez">
+  <div class="validez-inner">
+    <div class="validez-txt">
+      <strong>Validez del presupuesto:</strong> 10 días desde la fecha de envío.<br>
+      Los precios están expresados en pesos argentinos · Seña de trabajo: $200.000
+    </div>
+    <div class="validez-num">Pixels · Fotografía y Video · Córdoba</div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-brand">Pixels <span>·</span> Fotografía y Video</div>
+  <div class="footer-copy">Córdoba, Argentina · 2026</div>
+</footer>
+
+</body>
+</html>
