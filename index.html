@@ -588,6 +588,95 @@
       text-transform: uppercase;
     }
 
+    /* ── GALERÍA RESPONSIVE ── */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 4px;
+    }
+    .galeria-grid .foto-grande {
+      grid-column: span 2;
+      grid-row: span 2;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: #111;
+    }
+    .galeria-grid .foto-sm {
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: #111;
+    }
+    .galeria-grid .foto-wide {
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #111;
+    }
+    .galeria-grid .foto-txt {
+      background: var(--dark2);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+    }
+    .galeria-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      display: block;
+    }
+    .galeria-grid img:hover { transform: scale(1.05); }
+
+    @media (max-width: 640px) {
+      .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .galeria-grid .foto-grande {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 16/9;
+      }
+      .galeria-grid .foto-sm {
+        aspect-ratio: 1/1;
+      }
+      .galeria-grid .foto-wide {
+        aspect-ratio: 1/1;
+      }
+      .galeria-grid .foto-txt {
+        aspect-ratio: 1/1;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .galeria-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+      }
+    }
+
+    /* ── HEADER MOBILE ── */
+    @media (max-width: 480px) {
+      header {
+        padding: 20px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .header-meta { text-align: left; }
+      .wrap { padding: 0 16px; }
+      #hero { padding: 52px 16px 48px; }
+      #cronograma, #cobertura, #planes, #entregables, #contacto { padding: 52px 16px; }
+      #validez { padding: 32px 16px; }
+      footer { padding: 32px 16px 24px; }
+      .crono-day { padding: 28px 20px; }
+      .plan-card { padding: 36px 24px; }
+      .ent-list-box { padding: 28px 20px; }
+      .contacto-btns { flex-direction: column; align-items: center; }
+      .btn-gold, .btn-outline { width: 100%; justify-content: center; }
+    }
+
     /* ── PRINT ── */
     @media print {
       body { background: #fff; color: #000; }
@@ -731,7 +820,7 @@
         <div class="plan-price-note">2 días completos · Seña: $200.000</div>
         <ul class="plan-items">
           <li>1 fotógrafo profesional · 2 días</li>
-          <li>Cobertura en múltiples salones</li>
+          <li>Cobertura simultánea en múltiples salones</li>
           <li>Sesiones, simposios y talleres en paralelo</li>
           <li>Exposición comercial y breaks</li>
           <li>800–1.000 fotos editadas</li>
@@ -753,58 +842,45 @@
       Así cubrimos<br><em style="font-style:italic; color: var(--gold-lt);">cada evento.</em>
     </h2>
   </div>
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-    gap: 4px;
-  ">
+  <div class="galeria-grid">
     <!-- foto grande izquierda -->
-    <div style="grid-column: span 2; grid-row: span 2; overflow: hidden; aspect-ratio: 1/1; background:#111;">
+    <div class="foto-grande">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845244/Pixels_Fotografia_y_Video-152_vgfz62.jpg"
-           alt="Cobertura de evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease; display:block;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Cobertura de evento" />
     </div>
     <!-- fila derecha arriba: 2 fotos -->
-    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+    <div class="foto-sm">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845243/Pixels_Fotografia_y_Video-57_wepokp.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
-    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+    <div class="foto-sm">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845241/Pixels_Fotografia_y_Video-213_s7xzm9.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
     <!-- fila derecha abajo: 2 fotos -->
-    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+    <div class="foto-sm">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845240/Pixels_Fotografia_y_Video-32_ci9hzf.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
-    <div style="overflow:hidden; aspect-ratio:1/1; background:#111;">
+    <div class="foto-sm">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845237/Pixels_Fotografia_y_Video-80_g3dnok.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
-    <!-- fila final: 4 fotos -->
-    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+    <!-- fila final: 3 fotos + celda texto -->
+    <div class="foto-wide">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845236/Pixels_Fotografia_y_Video-83_oidd8g.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
-    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+    <div class="foto-wide">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845236/Pixels_Fotografia_y_Video-79_w0chd0.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
-    <div style="overflow:hidden; aspect-ratio:4/3; background:#111;">
+    <div class="foto-wide">
       <img src="https://res.cloudinary.com/dgo3agrzb/image/upload/v1779845233/Pixels_Fotografia_y_Video-18_j17tuc.jpg"
-           alt="Evento" style="width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;"
-           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+           alt="Evento" />
     </div>
     <!-- celda texto editorial -->
-    <div style="background: var(--dark2); aspect-ratio:4/3; display:flex; flex-direction:column; justify-content:flex-end; padding: 28px 24px;">
+    <div class="foto-txt">
       <div style="font-family: var(--font-display); font-size: 2.8rem; font-weight:300; color: var(--gold); opacity:0.4; line-height:1;">+8</div>
       <div style="font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 6px;">Años cubriendo<br>eventos en Córdoba</div>
     </div>
